@@ -3,14 +3,9 @@ switchmap:
   log_driver: "syslog"
   log_opt:
     tag: "switchmap"
-  #restart: always
-  #cap_add:
-  #  - NET_BIND_SERVICE
-  #volumes:
-  #  - ./fluentd/logs:/fluentd/log
-  #  - ./fluentd/conf:/fluentd/etc
+  restart: always
+  volumes:
+    - ./switchmap/conf:/configs
   ports:
     - "8080:80/tcp"
     - "4434:443/tcp"
-  #links:
-  #  - elasticsearch

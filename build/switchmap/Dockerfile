@@ -46,6 +46,10 @@ RUN sed -i "s/\/usr\/web\/nets\/internal\/portlists/\/opt\/switchmap/m" FindOffi
 RUN sed -i "s/+SymLinksIfOwnerMatch/+FollowSymLinks/m" /etc/apache2/conf-available/serve-cgi-bin.conf
 RUN sed -i "s/\/usr\/lib\/cgi-bin/\/opt\/switchmap/m" /etc/apache2/conf-available/serve-cgi-bin.conf
 RUN sed -i "s/\/usr\/lib\/cgi-bin/\/opt\/switchmap/m" /etc/apache2/sites-available/default-ssl.conf
+# Make Configs Directory
+RUN mkdir /configs
+RUN ln -s /opt/switchmap/ThisSite.pm /configs/
+VOLUME ["/configs"]
 # Enable Sites
 RUN find /etc/apache2/sites-enabled/ -type l -exec rm -f "{}" \;
 RUN a2ensite default-ssl
